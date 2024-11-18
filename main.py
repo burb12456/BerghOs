@@ -1,6 +1,6 @@
 from RANDCLASS import said, ask
-from commands import Dice, Todo, count, tamer, JsonTest, encrpytion, settingmenu
-from pathfinder import pathfinder
+from commands import Dice, Todo, count, tamer, JsonTest, encrpytion, settingmenu, notebook
+from pathfinder import main
 from game import game
 import re
 import os
@@ -42,7 +42,10 @@ while True:
     if command == 'settings':
         settingmenu()
     if command == 'pathfinder':
-        pathfinder()
+        main()
+
+    if command == 'notes':
+        notebook()
 
 
     

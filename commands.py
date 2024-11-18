@@ -5,7 +5,8 @@ import json
 filename = 'todo.json'
 esk = 0
 amount_timers = 0
-
+global screen_size
+global screen_speed
 from RANDCLASS import rolladice, said, ask, timer, timers
 def Dice():
     while True:
@@ -247,4 +248,7 @@ def settingmenu():
                 json.dump(settings, file, indent=4)
         elif setting.lower == 'quit':
             t = 0
-        
+def notebook():
+    pass
+
+    

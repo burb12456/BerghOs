@@ -2,28 +2,18 @@ import pygame
 import sys
 import random
 import heapq
-
+from commands import ask
 
 # Initialize Pygame
 pygame.init()
 
 # Constants
-WIDTH, HEIGHT = 420, 420
 GRID_SIZE = 20
-GRID_WIDTH = WIDTH // GRID_SIZE
-GRID_HEIGHT = HEIGHT // GRID_SIZE
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 rang = 255
 GREEN = (0, rang, 0)
-
-SNAKE_SPEED = 10
 SCORE = 0
-
-# Initialize the screen
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Snake AI")
-
 
 # Snake class
 class Snake:
@@ -64,7 +54,6 @@ class Snake:
 
     def draw(self):
         for segment in self.body:
-            
             pygame.draw.rect(screen, GREEN, (segment[0] * GRID_SIZE, segment[1] * GRID_SIZE, GRID_SIZE, GRID_SIZE))
 
 
@@ -160,7 +149,28 @@ def fallback_move(snake):
 
 # Main function
 def main():
-    global SCORE
+    global WIDTH, HEIGHT, GRID_WIDTH, GRID_HEIGHT, SNAKE_SPEED, screen_speed, screen, SCORE
+
+    screen_size = int(input('screen size? (between 400 - 2000):'))
+    if screen_size >= 2000:
+        screen_size = 2000
+    elif screen_size <= 400:
+        screen_size = 400
+
+    ask('Speed?')
+    screen_speed = int(input('Speed? (between 1- 10):'))
+    if screen_speed >= 10:
+        screen_speed = 10
+    elif screen_speed <= 1:
+        screen_speed = 1
+
+    WIDTH, HEIGHT = screen_size, screen_size
+    GRID_WIDTH = WIDTH // GRID_SIZE
+    GRID_HEIGHT = HEIGHT // GRID_SIZE
+    SNAKE_SPEED = 10
+
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("Snake AI")
 
     snake = Snake()
     food = Food()
@@ -199,7 +209,7 @@ def main():
         snake.draw()
         food.draw()
         pygame.display.flip()
-        clock.tick(500)
+        clock.tick(60 * screen_speed)
         frame_count += 1
 
 
