@@ -1,7 +1,9 @@
 import re
 import time
 import json
+global logged
 
+password = 'password'
 filename = 'todo.json'
 esk = 0
 amount_timers = 0
@@ -133,7 +135,7 @@ def tamer():
             while len(timers) > count:
                 said(timers[count])
                 count += 1
-
+#####################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
 def JsonTest():
     # Step 1: Load existing data from the JSON file
     try:
@@ -238,9 +240,9 @@ def settingmenu():
         elif setting.lower() == 'textspeed':
             ask('what would you like to change it to?')
             new_speed = input('what would you like to change it to?:')
-            if int(new_speed) > 0.5:
+            if float(new_speed) > 0.5:
                 new_speed = 0.5
-            if not isinstance(new_speed, (int, float)):
+            if isinstance(new_speed, (int, float)):
                 said('it is not a number try again')
                 new_speed = 0.01
             settings['text_speed'] = new_speed

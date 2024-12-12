@@ -209,7 +209,7 @@ def main():
         snake.draw()
         food.draw()
         pygame.display.flip()
-        clock.tick(60 * screen_speed)
+        clock.tick(150 * screen_speed)
         frame_count += 1
 
 

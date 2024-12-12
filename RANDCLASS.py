@@ -5,14 +5,6 @@ import json
 
 
 timers = []
-try:
-    with open('setting.json', 'r') as file:
-        settings = json.load(file)
-
-except FileNotFoundError:
-    settings = {}
-    print('not found')
-text_speed = float(settings.get('text_speed', 0.01)) # Provide default text speed
 
 class rolladice():
     def __init__(self, dicenumber, dicesize):
@@ -31,12 +23,21 @@ class rolladice():
 
 class said():
     def __init__(self, text):
+        try:
+            with open('setting.json', 'r') as file:
+                settings = json.load(file)
+
+        except FileNotFoundError:
+            settings = {}
+            print('not found')
+            text_speed = float(settings.get('text_speed', 0.01)) # Provide default text speed
+
         self.text = text
         counter = 1
         while len(text) + 1 > counter:
             print(text[:counter])
             counter += 1
-            time.sleep(text_speed)
+            time.sleep(0.01)
             if not len(text) + 1 == counter:
                 sys.stdout.write('\033[F')  
 class ask():
@@ -46,7 +47,7 @@ class ask():
         while len(text) + 1 > counter:
             print(text[:counter])
             counter += 1
-            time.sleep(text_speed)
+            time.sleep(0.01)
             sys.stdout.write('\033[F') 
         
          
@@ -60,7 +61,7 @@ class timer():
             time.sleep(1)
             timers.append(str(timerr)  +' second timer: ' + str(erm) + ' seconds' )
 
-        said('Timer done!!!')
+        said('Timer done!!!') 
 
 class ATJSON():
     def __init__(self, filename, function, value):
